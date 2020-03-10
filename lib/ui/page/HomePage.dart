@@ -79,6 +79,46 @@ class _HomePageState extends State<HomePage>
                       index: index);
                 },
               ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Mais",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 320,
+              child: PageView.builder(
+                onPageChanged: (moreIndex) {
+                  setState(() {
+                    _currentIndexMore = moreIndex;
+                  });
+                },
+                physics: BouncingScrollPhysics(),
+                controller: _pageController,
+                scrollDirection: Axis.horizontal,
+                itemCount: ShoesMock.shoesList.length,
+                itemBuilder: (ctx, index) {
+                  return ShoeItem(
+                    shoe: ShoesMock.shoesList[index],
+                    currentIndex: _currentIndexMore,
+                    index: index,
+                  );
+                },
+              ),
             )
           ],
         ),
